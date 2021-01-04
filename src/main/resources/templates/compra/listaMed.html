@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<i class="oi oi-caret-right"></i>
+						<span th:text="#{consulta.listar.label}"></span>
+					</li>
+				</ul>				
+			</div>
+		</nav>
+		
+		<div class="container" id="listagem">
+
+			<div th:replace="fragments/alert"></div>
+
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th class="bg-warning">#</th>
+							<th class="bg-warning" th:text="#{consulta.data.label}"></th>
+							<th class="bg-warning" th:text="#{consulta.hora.label}"></th>
+							<th class="bg-warning" th:text="#{paciente.nome.label}"></th>												
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="consulta : ${consultas}">
+							<td th:text="${consulta.id}"></td>
+							<td th:text="${consulta.data}"></td>
+							<td th:text="${consulta.hora}"></td>
+							<td th:text="${consulta.usuario.name}"></td>
+					
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div th:replace="fragments/modal :: modal"></div>
+	</section>
+</body>
+</html>

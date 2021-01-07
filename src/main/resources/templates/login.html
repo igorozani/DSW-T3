@@ -38,7 +38,35 @@
 				</form>
 				
 				<br />
-				<h1 th:text="#{medico.listar.label}"></h1>				
+				
+					<h1 th:text="#{medico.listar.label}"></h1>									
+					<div>
+					<br/>
+						<h7>Filtrar por especialidade:</h7>
+						<form 						
+							th:action="@{/login/especialidade}"
+							th:object="${especialidades}" method="POST">
+							<select 
+								style="width:150px; 
+								height:30px; 
+								border: 1px solid lightgray; 
+								border-radius: 5px;"
+								name=especialidade	
+								>							
+								<option th:each="especialidade : ${especialidades}" 
+								th:text="${especialidade}" ></option>							
+							</select>
+							<button type="submit" th:text="#{button.filtrar.label}"
+								class="btn btn-info btn-sm">
+							</button>	
+							<a class="btn btn-info btn-sm" th:href="@{/login}"
+									role="button" th:text="#{button.Limpar.label}"> 								
+							</a>							
+						</form>
+						
+						<br />
+						<br />											
+					</div>							
 		</div>
 		<div class="container" id="listagem">
 	

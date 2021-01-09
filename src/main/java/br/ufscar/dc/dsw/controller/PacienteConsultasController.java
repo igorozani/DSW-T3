@@ -62,10 +62,40 @@ public class PacienteConsultasController {
 		consulta.setUsuario(this.getUsuario());
 		
 		//compra.setValor(compra.getLivro().getPreco());
+		List<Consulta> consultas = consultaservice.buscarTodos(getUsuario());
+		// flag para saber se encontrou uma consulta na mesma data e hora 
+//		boolean flag = false;
+		for(Consulta consulta1 : consultas) {
+			// pego as consultas do mesmo medico
+			if(consulta.getMedico().equals(consulta1.getMedico())) {
+				// pego as consultas da mesma data
+				if(consulta.getData().equals(consulta1.getData())) {
+					// pego as consultas na mesma hora
+					if(consulta1.getHora().equals(consulta.getHora())) {
+						// se entrar aqui é pq ta batendo o horario
+//						flag = true;
+						attr.addFlashAttribute("fail", "O médico selecionado já possui uma consulta neste horário.");
+						return "redirect:/consultaspa/cadastrar";
+					}
+				}
+			}
+			if(consulta.getusuario().equals(consulta1.getusuario())) {
+				// pego as consultas da mesma data
+				if(consulta.getData().equals(consulta1.getData())) {
+					// pego as consultas na mesma hora
+					if(consulta1.getHora().equals(consulta.getHora())) {
+						// se entrar aqui é pq ta batendo o horario
+//						flag = true;
+						attr.addFlashAttribute("fail", "Você já tem uma consulta agendada neste horário.");
+						return "redirect:/consultaspa/cadastrar";
+					}
+				}
+			}
+		}		
+			consultaservice.salvar(consulta);
+			attr.addFlashAttribute("sucess", "Consulta cadastrada com sucesso.");
+			return "redirect:/consultaspa/listar";			
 		
-		consultaservice.salvar(consulta);
-		attr.addFlashAttribute("sucess", "Consulta cadastrada com sucesso.");
-		return "redirect:/consultaspa/listar";
 	}
 	
 	@ModelAttribute("medicos")

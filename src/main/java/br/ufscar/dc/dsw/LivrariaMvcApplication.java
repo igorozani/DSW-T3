@@ -46,6 +46,16 @@ public class LivrariaMvcApplication {
 			u2.setRole("ROLE_PA");
 			u2.setEnabled(true);
 			pacienteDAO.save(u2);
+			
+			Medico u3 = new Medico();
+			u3.setUsername("ciclano@email");
+			u3.setPassword(encoder.encode("123"));
+			u3.setCrm("45655875-3/BR");
+			u3.setName("Ciclano");
+			u3.setEspecialidade("Oncologista");
+			u3.setRole("ROLE_ME");
+			u3.setEnabled(true);
+			medicoDAO.save(u3);
 //			
 //			Usuario u3 = new Usuario();
 //			u3.setUsername("fulano@email");

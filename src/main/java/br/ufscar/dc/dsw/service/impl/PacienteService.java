@@ -18,30 +18,11 @@ public class PacienteService implements IPacienteService {
 
 	@Autowired
 	IPacienteDAO pacientedao;
-//	@Autowired
-//	IUsuarioDAO usuariodao;
-	
 	
 	public void salvar(Paciente paciente) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();		
-		Paciente novopaciente = new Paciente();
-		novopaciente.setCpf(paciente.getCpf());
-		novopaciente.setNome(paciente.getNome());
-		novopaciente.setNascimento(paciente.getNascimento());
-		novopaciente.setTelefone(paciente.getTelefone());
-		novopaciente.setSexo(paciente.getSexo());
-		novopaciente.setEnabled(true);
-		novopaciente.setUsername(paciente.getUsername());
-		novopaciente.setPassword(encoder.encode(paciente.getPassword()));
-		novopaciente.setRole(paciente.getRole());
-		pacientedao.save(novopaciente);
-//		Usuario usuario = new Usuario();
-//		usuario.setUsername(paciente.getLogin());
-//		usuario.setPassword((encoder.encode(paciente.getSenha())));
-//		usuario.setName(paciente.getNome());
-//		usuario.setRole("ROLE_PA");
-//		usuario.setEnabled(true);
-//		usuariodao.save(usuario);
+		paciente.setPassword(encoder.encode(paciente.getPassword()));
+		pacientedao.save(paciente);	
 	}
 
 	public void excluir(Long id) {

@@ -19,18 +19,7 @@ public class Consulta extends AbstractEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name = "paciente_id")
 	public Paciente paciente;
-    
-	/*@NotNull(message = "{NotNull.compra.livro}")
-	@ManyToOne
-	@JoinColumn(name = "livro_id")
-	private Paciente livro;
-
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "usuario_id")
-	private Usuario usuario;*/
-
-	
+    	
 	@NotNull(message = "{NotNull.compra.livro}")
 	@ManyToOne
 	@JoinColumn(name = "medico_id")

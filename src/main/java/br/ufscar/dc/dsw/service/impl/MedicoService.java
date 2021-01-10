@@ -27,15 +27,8 @@ public class MedicoService implements IMedicoService {
 	
 	public void salvar(Medico medico) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Medico novomedico = new Medico();
-		novomedico.setCrm(medico.getCrm());
-		novomedico.setEspecialidade(medico.getEspecialidade());
-		novomedico.setName(medico.getName());
-		novomedico.setEnabled(true);
-		novomedico.setUsername(medico.getUsername());				
-		novomedico.setPassword(encoder.encode(medico.getPassword()));
-		novomedico.setRole(medico.getRole());
-		medicodao.save(novomedico);			
+		medico.setPassword(encoder.encode(medico.getPassword()));		
+		medicodao.save(medico);			
 	}
 
 	public void excluir(Long id) {

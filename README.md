@@ -12,19 +12,9 @@ Java, Maven, MySQL
 Antes de fazer deploy e executar o projeto deve-se criar o Banco com o nome 'consultoriomvc'.
 
 #### Usuários do BD
-+--------------------------+
-| Usuário: admin           | 
-| Senha: admin             |
-| Role: ROLE_ADMIN         |
-+--------------------------+
-| Usuário: beltrano@email  |
-| Senha: 123               |
-| Role: ROLE_PA            |
-+--------------------------+
-| Usuário: ciclano@email   |
-| Senha: 123               |
-| Role: ROLE_ME            |
-+--------------------------+
+Usuário: admin, senha: admin, role: ROLE_ADMIN   
+Usuário: beltrano@email, senha: 123, role: ROLE_PA  
+Usuário: ciclano@email, senha: 123, role: ROLE_ME            
 
 ```
 O banco utiliza a senha 'password', altere a senha na variável spring.datasource.password no arquivo /src/main/resources/application.properties para a senha utilazada no seu banco local, se necessário.

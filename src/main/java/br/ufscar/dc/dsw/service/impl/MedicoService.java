@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.ufscar.dc.dsw.dao.IMedicoDAO;
 import br.ufscar.dc.dsw.dao.IUsuarioDAO;
 import br.ufscar.dc.dsw.domain.Medico;
+import br.ufscar.dc.dsw.domain.Paciente;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.service.spec.IMedicoService;
 
@@ -18,36 +19,37 @@ import br.ufscar.dc.dsw.service.spec.IMedicoService;
 public class MedicoService implements IMedicoService {
 
 	@Autowired
-	IMedicoDAO dao;
+	IMedicoDAO medicodao;
 	@Autowired
 	IUsuarioDAO usuariodao;
 	
 	
 	
 	public void salvar(Medico medico) {
-		dao.save(medico);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Usuario usuario = new Usuario();
-		usuario.setUsername(medico.getUsername());
-		usuario.setPassword(encoder.encode(medico.getPassword()));
-		usuario.setName(medico.getName());
-		usuario.setRole("ROLE_ME");
-		usuario.setEnabled(true);
-		usuariodao.save(usuario);
+		Medico novomedico = new Medico();
+		novomedico.setCrm(medico.getCrm());
+		novomedico.setEspecialidade(medico.getEspecialidade());
+		novomedico.setName(medico.getName());
+		novomedico.setEnabled(true);
+		novomedico.setUsername(medico.getUsername());				
+		novomedico.setPassword(encoder.encode(medico.getPassword()));
+		novomedico.setRole(medico.getRole());
+		medicodao.save(novomedico);			
 	}
 
 	public void excluir(Long id) {
-		dao.deleteById(id);
+		medicodao.deleteById(id);
 	}
 
 	@Transactional(readOnly = true)
 	public Medico buscarPorId(Long id) {
-		return dao.findById(id.longValue());
+		return medicodao.findById(id.longValue());
 	}
 
 	@Transactional(readOnly = true)
 	public List<Medico> buscarTodos() {
-		return dao.findAll();
+		return medicodao.findAll();
 	}
 	
 	

@@ -3,8 +3,9 @@ package br.ufscar.dc.dsw.domain;
 
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -13,21 +14,22 @@ import javax.validation.constraints.Size;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Paciente")
-public class Paciente extends AbstractEntity<Long> {
+@PrimaryKeyJoinColumn(name="id")
+public class Paciente extends Usuario {
 
 	@NotBlank(message = "{NotBlank.paciente.nome}")
 	@Size(max = 60)
 	@Column(nullable = false, length = 60)
 	private String nome;
 
-	@NotBlank(message = "{NotBlank.paciente.login}")
-	@Size(max = 60)
-	@Column(nullable = false, length = 20)
-	private String login;
-    
-	@NotBlank(message = "{NotBlank.paciente.senha}")
-	@Column(nullable = false, length = 20)
-	private String senha;
+//	@NotBlank(message = "{NotBlank.paciente.login}")
+//	@Size(max = 60)
+//	@Column(nullable = false, length = 20)
+//	private String login;
+//    
+//	@NotBlank(message = "{NotBlank.paciente.senha}")
+//	@Column(nullable = false, length = 20)
+//	private String senha;
 	
 	@NotBlank(message = "{NotBlank.paciente.cpf}")
 	@Column(nullable = false, length = 20)
@@ -55,25 +57,21 @@ public class Paciente extends AbstractEntity<Long> {
 		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getPreco() {
-		return cpf;
-	}
+//	public String getLogin() {
+//		return login;
+//	}
+//
+//	public void setLogin(String login) {
+//		this.login = login;
+//	}
+//
+//	public String getSenha() {
+//		return senha;
+//	}
+//
+//	public void setSenha(String senha) {
+//		this.senha = senha;
+//	}
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;

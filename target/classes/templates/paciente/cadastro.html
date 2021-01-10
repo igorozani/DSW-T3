@@ -41,24 +41,24 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label th:text="#{paciente.login.label}" for="login"></label> 
-						<input type="text" class="form-control" id="login" placeholder="login@login"
-							autofocus="autofocus" th:field="*{login}"
-							th:classappend="${#fields.hasErrors('login')} ? is-invalid" />
+						<label th:text="#{paciente.login.label}" for="username"></label> 
+						<input type="text" class="form-control" id="username" placeholder="username@email"
+							autofocus="autofocus" th:field="*{username}"
+							th:classappend="${#fields.hasErrors('username')} ? is-invalid" />
 						
 						<div class="invalid-feedback">
-							<span th:errors="*{login}"></span>
+							<span th:errors="*{username}"></span>
 						</div>
 					</div>
 
 					<div class="form-group col-md-6">
 						<label th:text="#{login.password}" for="ano"></label> 
-						<input type="password" class="form-control" id="senha" placeholder=""
-							autofocus="autofocus" th:field="*{senha}"
-							th:classappend="${#fields.hasErrors('senha')} ? is-invalid" />
+						<input type="password" class="form-control" id="password" 
+							autofocus="autofocus" th:field="*{password}"
+							th:classappend="${#fields.hasErrors('password')} ? is-invalid" />
 						
 						<div class="invalid-feedback">
-							<span th:errors="*{senha}"></span>
+							<span th:errors="*{password}"></span>
 						</div>
 					</div>
 
@@ -105,6 +105,11 @@
 							<span th:errors="*{telefone}"></span>
 						</div>
 					</div>
+					
+					<input type="hidden" class="form-control" id="role"
+							value="ROLE_PA" 
+							name="role"
+							th:classappend="${#fields.hasErrors('role')} ? is-invalid" />
 					
 					
 					

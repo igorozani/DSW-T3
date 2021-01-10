@@ -2,25 +2,28 @@ package br.ufscar.dc.dsw.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario extends AbstractEntity<Long> {
   
 	@NotBlank
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 20, unique = true)
     private String username;
     
 	@NotBlank
     @Column(nullable = false, length = 64)
     private String password;
        
-    @NotBlank
-    @Column(nullable = false, length = 60)
-    private String name;
+//    @NotBlank
+//    @Column(nullable = false, length = 60)
+//    private String name;
     
     @NotBlank
     @Column(nullable = false, length = 10)
@@ -45,13 +48,13 @@ public class Usuario extends AbstractEntity<Long> {
 		this.password = password;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public String getName() {
+//		return name;
+//	}
+//	
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 	
 
 	public String getRole() {

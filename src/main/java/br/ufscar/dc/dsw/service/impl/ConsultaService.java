@@ -10,6 +10,7 @@ import br.ufscar.dc.dsw.dao.ICompraDAO;
 import br.ufscar.dc.dsw.domain.Consulta;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Medico;
+import br.ufscar.dc.dsw.domain.Paciente;
 import br.ufscar.dc.dsw.service.spec.IConsultaService;
 
 @Service
@@ -29,10 +30,14 @@ public class ConsultaService implements IConsultaService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Consulta> buscarTodos(Usuario u) {
-		List<Consulta> consultas = dao.findAllByUsuario(u);
-		return dao.findAllByUsuario(u);
+	public List<Consulta> buscarTodos() {
+		return (List<Consulta>) dao.findAll();
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Consulta> buscarTodosByPac(Paciente p) {
+		return dao.findAllByPaciente(p);
+	}	
 	
 	@Transactional(readOnly = true)
 	public List<Consulta> buscarTodosByMed(Medico m) {

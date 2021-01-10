@@ -2,21 +2,23 @@
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Medico")
-public class Medico extends AbstractEntity<Long> {
+@PrimaryKeyJoinColumn(name="id")
+public class Medico extends Usuario {
   
-	@NotBlank
-    @Column(nullable = false, length = 20, unique = true)
-    private String username;
-    
-	@NotBlank
-    @Column(nullable = false, length = 64)
-    private String password;
+//	@NotBlank
+//    @Column(nullable = false, length = 20, unique = true)
+//    private String username;
+//    
+//	@NotBlank
+//    @Column(nullable = false, length = 64)
+//    private String password;
        
     @NotBlank
     @Column(nullable = false, length = 60, unique = true)
@@ -33,21 +35,21 @@ public class Medico extends AbstractEntity<Long> {
     @Column(nullable = false)
     private boolean enabled;
 		
-	public String getUsername() {
-		return username;
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
+//	public String getUsername() {
+//		return username;
+//	}
+//	
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
+//	
+//	public String getPassword() {
+//		return password;
+//	}
+//	
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
 	
 	public String getName() {
 		return name;
@@ -74,11 +76,11 @@ public class Medico extends AbstractEntity<Long> {
 		this.Especialidade = especialidade;
 	}
 	
-	public boolean isEnabled() {
-		return enabled;
-	}
-	
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+//	public boolean isEnabled() {
+//		return enabled;
+//	}
+//	
+//	public void setEnabled(boolean enabled) {
+//		this.enabled = enabled;
+//	}
 }

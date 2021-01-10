@@ -17,8 +17,8 @@ public class Consulta extends AbstractEntity<Long> {
     
 	@NotNull(message = "{NotNull.compra.livro}")
 	@ManyToOne
-	@JoinColumn(name = "usuario_id")
-	public Usuario usuario;
+	@JoinColumn(name = "paciente_id")
+	public Paciente paciente;
     
 	/*@NotNull(message = "{NotNull.compra.livro}")
 	@ManyToOne
@@ -44,12 +44,12 @@ public class Consulta extends AbstractEntity<Long> {
 	@Column(nullable = false, length = 5)
 	private String hora;
 
-	public Usuario getusuario() {
-		return usuario;
+	public Paciente getPaciente() {
+		return paciente;
 	}
 
-	public void setUsuario(Usuario login) {
-		this.usuario = login;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 	public Medico getMedico() {

@@ -5,15 +5,17 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import br.ufscar.dc.dsw.domain.Consulta;
-import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.domain.Medico;
+import br.ufscar.dc.dsw.domain.Paciente;
 
 @SuppressWarnings("unchecked")
 public interface ICompraDAO extends CrudRepository<Consulta, Long>{
 
 	Consulta findById(long id);
+	
+	List<Consulta> findAll();
 
-	List<Consulta> findAllByUsuario(Usuario u);
+	List<Consulta> findAllByPaciente(Paciente p);
 	
 	List<Consulta> findAllByMedico(Medico m);
 	

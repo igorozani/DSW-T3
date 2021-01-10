@@ -84,6 +84,12 @@
 						</div>
 					</div>
 					
+					<input type="hidden" class="form-control" id="role"
+							value="ROLE_ME" 
+							name="role"
+							th:classappend="${#fields.hasErrors('role')} ? is-invalid" />
+					
+					
 				</div>
 
 				<input type="hidden" id="id" th:field="*{id}" />

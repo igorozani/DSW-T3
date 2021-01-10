@@ -33,16 +33,11 @@ public class MedicoConsultasController {
 	private IConsultaService consultaservice;
 	
 	@Autowired
-	private IMedicoService medicoService;
-	
-	private Usuario getUsuario() {
-		UsuarioDetails usuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return usuarioDetails.getUsuario();
-	}
-	
+	private IMedicoService medicoService;	
 	
 	private Medico getMedico() {
-		Usuario usuario = this.getUsuario();
+		UsuarioDetails usuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Usuario usuario = usuarioDetails.getUsuario();
 		List<Medico> medicos = this.listaMedicos();
 		Medico m = null;
 		for(Medico medico : medicos) {

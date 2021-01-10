@@ -16,11 +16,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufscar.dc.dsw.domain.Consulta;
 import br.ufscar.dc.dsw.domain.Medico;
-
+import br.ufscar.dc.dsw.domain.Paciente;
 import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.security.UsuarioDetails;
 
 import br.ufscar.dc.dsw.service.spec.IMedicoService;
+import br.ufscar.dc.dsw.service.spec.IPacienteService;
 import br.ufscar.dc.dsw.service.spec.IConsultaService;
 
 
@@ -34,23 +35,29 @@ public class PacienteConsultasController {
 	@Autowired
 	private IMedicoService medicoService;
 	
+	@Autowired
+	private IPacienteService pacienteService;
+	
+	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Consulta consulta) {
-		consulta.setUsuario(this.getUsuario());
+		consulta.setPaciente(this.getPaciente());
 		
 		//compra.setValor(compra.getLivro().getPreco());
 		return "compra/cadastro";
 	}
 	
-	private Usuario getUsuario() {
+	private Paciente getPaciente() {
 		UsuarioDetails usuarioDetails = (UsuarioDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return usuarioDetails.getUsuario();
+		Usuario usuario = usuarioDetails.getUsuario();
+		Paciente paciente = pacienteService.buscarPorId(usuario.getId());
+		return paciente;
 	}
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 					
-		model.addAttribute("consultas",consultaservice.buscarTodos(this.getUsuario()));
+		model.addAttribute("consultas",consultaservice.buscarTodosByPac(this.getPaciente()));
 		
 		return "compra/lista";
 	}
@@ -59,10 +66,10 @@ public class PacienteConsultasController {
 	public String salvar(Consulta consulta, BindingResult result, RedirectAttributes attr) {
 		
 		//String data = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
-		consulta.setUsuario(this.getUsuario());
+		consulta.setPaciente(this.getPaciente());
 		
 		//compra.setValor(compra.getLivro().getPreco());
-		List<Consulta> consultas = consultaservice.buscarTodos(getUsuario());
+		List<Consulta> consultas = consultaservice.buscarTodos();
 		// flag para saber se encontrou uma consulta na mesma data e hora 
 //		boolean flag = false;
 		for(Consulta consulta1 : consultas) {
@@ -79,7 +86,7 @@ public class PacienteConsultasController {
 					}
 				}
 			}
-			if(consulta.getusuario().equals(consulta1.getusuario())) {
+			if(consulta.getPaciente().equals(consulta1.getPaciente())) {
 				// pego as consultas da mesma data
 				if(consulta.getData().equals(consulta1.getData())) {
 					// pego as consultas na mesma hora

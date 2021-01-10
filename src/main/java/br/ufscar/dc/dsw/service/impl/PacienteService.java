@@ -17,34 +17,44 @@ import br.ufscar.dc.dsw.service.spec.IPacienteService;
 public class PacienteService implements IPacienteService {
 
 	@Autowired
-	IPacienteDAO dao;
-	@Autowired
-	IUsuarioDAO usuariodao;
+	IPacienteDAO pacientedao;
+//	@Autowired
+//	IUsuarioDAO usuariodao;
 	
 	
 	public void salvar(Paciente paciente) {
-		dao.save(paciente);
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Usuario usuario = new Usuario();
-		usuario.setUsername(paciente.getLogin());
-		usuario.setPassword((encoder.encode(paciente.getSenha())));
-		usuario.setName(paciente.getNome());
-		usuario.setRole("ROLE_PA");
-		usuario.setEnabled(true);
-		usuariodao.save(usuario);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();		
+		Paciente novopaciente = new Paciente();
+		novopaciente.setCpf(paciente.getCpf());
+		novopaciente.setNome(paciente.getNome());
+		novopaciente.setNascimento(paciente.getNascimento());
+		novopaciente.setTelefone(paciente.getTelefone());
+		novopaciente.setSexo(paciente.getSexo());
+		novopaciente.setEnabled(true);
+		novopaciente.setUsername(paciente.getUsername());
+		novopaciente.setPassword(encoder.encode(paciente.getPassword()));
+		novopaciente.setRole(paciente.getRole());
+		pacientedao.save(novopaciente);
+//		Usuario usuario = new Usuario();
+//		usuario.setUsername(paciente.getLogin());
+//		usuario.setPassword((encoder.encode(paciente.getSenha())));
+//		usuario.setName(paciente.getNome());
+//		usuario.setRole("ROLE_PA");
+//		usuario.setEnabled(true);
+//		usuariodao.save(usuario);
 	}
 
 	public void excluir(Long id) {
-		dao.deleteById(id);
+		pacientedao.deleteById(id);
 	}
 
 	@Transactional(readOnly = true)
 	public Paciente buscarPorId(Long id) {
-		return dao.findById(id.longValue());
+		return pacientedao.findById(id.longValue());
 	}
 
 	@Transactional(readOnly = true)
 	public List<Paciente> buscarTodos() {
-		return dao.findAll();
+		return pacientedao.findAll();
 	}
 }

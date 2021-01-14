@@ -40,18 +40,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-				http.authorizeRequests()
-				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**").permitAll()
-				.antMatchers("/consultaspa/**").hasRole("PA")
-				.antMatchers("/medicos/**", "/pacientes/**", "/usuarios/**").hasRole("ADMIN")
-				.anyRequest().authenticated()
-			.and()
-				.formLogin()
-				.loginPage("/login")
-				.permitAll()
-			.and()
-				.logout()
-				.logoutSuccessUrl("/")
-				.permitAll();
+		 http.csrf().disable().authorizeRequests()    
+		 // Controladores REST    
+		 .antMatchers("/pacientes", "/medicos", "/consultas").permitAll()    
+		 .antMatchers("/pacientes/{\\d+}", "/medicos/{\\d+}").permitAll()    
+		 .antMatchers("/consultas/{\\d+}").permitAll()    
+		 .antMatchers("/medicos/especialidades/{\\w+}").permitAll()    
+		 .antMatchers("/consultas/pacientes/{\\d+}").permitAll()    
+		 .antMatchers("/consultas/medicos/{\\d+}").permitAll()     
+		 // Demais linhas    
+		 .anyRequest().authenticated()    
+		 .and()       
+		 .formLogin().loginPage("/login").permitAll()   
+		 .and()        
+		 .logout().logoutSuccessUrl("/").permitAll();
+		
+//				http.authorizeRequests()
+//				.antMatchers("/error", "/login/**", "/js/**", "/css/**", "/image/**", "/webjars/**").permitAll()
+//				.antMatchers("/consultaspa/**").hasRole("PA")
+//				.antMatchers("/medicos/**", "/pacientes/**", "/usuarios/**").hasRole("ADMIN")
+//				.anyRequest().authenticated()
+//			.and()
+//				.formLogin()
+//				.loginPage("/login")
+//				.permitAll()
+//			.and()
+//				.logout()
+//				.logoutSuccessUrl("/")
+//				.permitAll();
 	}
 }

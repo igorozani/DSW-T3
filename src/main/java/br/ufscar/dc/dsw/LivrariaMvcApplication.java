@@ -11,7 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import br.ufscar.dc.dsw.dao.IMedicoDAO;
 import br.ufscar.dc.dsw.dao.IPacienteDAO;
 import br.ufscar.dc.dsw.dao.IUsuarioDAO;
-
+import br.ufscar.dc.dsw.dao.ICompraDAO;
+import br.ufscar.dc.dsw.domain.Consulta;
 import br.ufscar.dc.dsw.domain.Medico;
 import br.ufscar.dc.dsw.domain.Paciente;
 import br.ufscar.dc.dsw.domain.Usuario;
@@ -24,7 +25,7 @@ public class LivrariaMvcApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, BCryptPasswordEncoder encoder, IMedicoDAO medicoDAO, IPacienteDAO pacienteDAO) {
+	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, BCryptPasswordEncoder encoder, IMedicoDAO medicoDAO, IPacienteDAO pacienteDAO, ICompraDAO consultaDAO) {
 		return (args) -> {
 			
 			Usuario u1 = new Usuario();
@@ -56,6 +57,13 @@ public class LivrariaMvcApplication {
 			u3.setRole("ROLE_ME");
 			u3.setEnabled(true);
 			medicoDAO.save(u3);
+			
+			Consulta c1 = new Consulta();
+			c1.setData("10/03/2021");
+			c1.setHora("14:30");
+			c1.setMedico(u3);
+			c1.setPaciente(u2);
+			consultaDAO.save(c1);
 //			
 //			Usuario u3 = new Usuario();
 //			u3.setUsername("fulano@email");

@@ -1,7 +1,5 @@
-# WEB2020T2
+# WEB2020T3 - TRABALHO 3 (REST API)
 Repositório para a disciplina de Desenvolvimento Web 1 - UFSCar 2020 ENPE
-
-
 
 
 ### Pré Requisitos
@@ -9,7 +7,8 @@ Repositório para a disciplina de Desenvolvimento Web 1 - UFSCar 2020 ENPE
 Java, Maven, MySQL
 
 #### Criação do Banco
-Antes de fazer deploy e executar o projeto deve-se criar o Banco com o nome 'consultoriomvc'.
+Antes de fazer o deploy e executar o projeto deve-se criar um banco de dados com o nome 'consultoriomvc'.
+Execute o comando 'mysql -u root -p' em um terminal e digite sua senha do mysql. Depois execute o comando 'CREATE DATABASE consultoriomvc;'.
 
 #### Usuários do BD
 Usuário: admin, senha: admin, role: ROLE_ADMIN   

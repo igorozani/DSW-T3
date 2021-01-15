@@ -22,7 +22,7 @@ no arquivo /src/main/resources/application.properties para a senha utilazada no 
 ```
 ### Execução
 compilar:
-  No diretório do projeto executar no temrinal
-  mvn spring-boot:run
+  Abra um terminal e execute o comando
+  'mvn spring-boot:run' no diretorio de seu projeto
 
 

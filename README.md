@@ -8,7 +8,7 @@ Repositório para a disciplina de Desenvolvimento Web 1 - UFSCar 2020 ENPE
 
 Java, Maven, MySQL
 
-#### Instalação do Banco
+#### Criação do Banco
 Antes de fazer deploy e executar o projeto deve-se criar o Banco com o nome 'consultoriomvc'.
 
 #### Usuários do BD

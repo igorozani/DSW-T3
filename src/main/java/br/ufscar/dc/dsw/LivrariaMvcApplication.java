@@ -48,6 +48,18 @@ public class LivrariaMvcApplication {
 			u2.setEnabled(true);
 			pacienteDAO.save(u2);
 			
+			Paciente u4 = new Paciente();
+			u4.setUsername("delano@email");
+			u4.setPassword(encoder.encode("123"));
+			u4.setCpf("433.568.969-45");
+			u4.setNome("Delano");
+			u4.setNascimento("11/05/1976");
+			u4.setTelefone("3223-5669");
+			u4.setSexo("Masculino");
+			u4.setRole("ROLE_PA");
+			u4.setEnabled(true);
+			pacienteDAO.save(u4);
+			
 			Medico u3 = new Medico();
 			u3.setUsername("ciclano@email");
 			u3.setPassword(encoder.encode("123"));
@@ -58,12 +70,36 @@ public class LivrariaMvcApplication {
 			u3.setEnabled(true);
 			medicoDAO.save(u3);
 			
+			Medico u5 = new Medico();
+			u5.setUsername("fulano@email");
+			u5.setPassword(encoder.encode("123"));
+			u5.setCrm("45652175-3/BR");
+			u5.setName("Fulano");
+			u5.setEspecialidade("Gastro");
+			u5.setRole("ROLE_ME");
+			u5.setEnabled(true);
+			medicoDAO.save(u5);
+			
 			Consulta c1 = new Consulta();
 			c1.setData("10/03/2021");
 			c1.setHora("14:30");
 			c1.setMedico(u3);
 			c1.setPaciente(u2);
 			consultaDAO.save(c1);
+			
+			Consulta c2 = new Consulta();
+			c2.setData("10/05/2021");
+			c2.setHora("14:00");
+			c2.setMedico(u5);
+			c2.setPaciente(u4);
+			consultaDAO.save(c2);
+			
+			Consulta c3 = new Consulta();
+			c3.setData("13/12/2021");
+			c3.setHora("10:00");
+			c3.setMedico(u3);
+			c3.setPaciente(u4);
+			consultaDAO.save(c3);
 //			
 //			Usuario u3 = new Usuario();
 //			u3.setUsername("fulano@email");

@@ -14,7 +14,7 @@ public class Medico extends Usuario {
  
     @NotBlank
     @Column(nullable = false, length = 60)
-    private String name;
+    private String nome;
     
     @NotBlank
     @Column(nullable = false, length = 20)
@@ -28,11 +28,11 @@ public class Medico extends Usuario {
     private boolean enabled;		
 	
 	public String getName() {
-		return name;
+		return nome;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String nome) {
+		this.nome = nome;
 	}
 	
 	
